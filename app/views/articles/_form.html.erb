@@ -1,0 +1,37 @@
+<%= form_with model: @article, local: true do |form| %>
+
+  <% if @article.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@article.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @article.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <%= form.label :title %>
+      <%= form.text_field :title, placeholder: "Title" %>
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <div class="form-group floating-label-form-group controls">
+      <%= form.label :text %><br>
+      <%= form.cktext_area :text, ckeditor: {height: "500",  language: 'pl'} %>
+      <p class="help-block text-danger"></p>
+    </div>
+  </div>
+
+  <p>
+    <%= form.submit %>
+  </p>
+
+<% end %>
